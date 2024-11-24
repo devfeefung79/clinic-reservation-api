@@ -1,0 +1,32 @@
+{
+    "name": "clinic-reservation-api",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "start": "node server.js",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix"
+    },
+    "dependencies": {
+        "bcrypt": "^5.1.1",
+        "body-parser": "^1.20.3",
+        "cookie-parser": "~1.4.4",
+        "date-fns": "^4.1.0",
+        "debug": "~2.6.9",
+        "dotenv": "^16.4.5",
+        "express": "^4.21.1",
+        "jsonwebtoken": "^9.0.2",
+        "morgan": "~1.9.1",
+        "mysql2": "^3.11.4",
+        "node-cron": "^3.0.3",
+        "sequelize": "^6.37.5",
+        "swagger-jsdoc": "^6.2.8",
+        "swagger-ui-express": "^5.0.1"
+    },
+    "devDependencies": {
+        "eslint": "^8.2.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-plugin-import": "^2.25.2",
+        "globals": "^15.12.0"
+    }
+}
