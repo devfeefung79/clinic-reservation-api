@@ -29,7 +29,7 @@ The Client Reservation API is a RESTful service built with Node.js and Express.j
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/client-reservation-api.git
+   git clone https://github.com/devfeefung79/client-reservation-api.git
    cd client-reservation-api
    ```    
 1. **Install dependencies**
