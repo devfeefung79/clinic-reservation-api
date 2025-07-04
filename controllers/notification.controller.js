@@ -1,4 +1,4 @@
-const NotificationModel = require('../models/notification.model'); // Adjust the path based on your project structure
+const NotificationModel = require('../models/notification.model');
 
 /**
  * Sends a notification to a user.

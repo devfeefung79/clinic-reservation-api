@@ -3,6 +3,20 @@ const DoctorScheduleModel = require('../models/doctorSchedule.model');
 
 const { format, addMinutes, parse, isBefore, eachDayOfInterval, parseISO, getDay } = require('date-fns');
 
+/**
+ * Persists available slots for doctors between a given start and end date.
+ *
+ * This function retrieves doctor schedules grouped by day of the week and 
+ * generates available slots for each day within the specified date interval. 
+ * The generated slots are then stored in the database.
+ *
+ * @param {string} startDate - The start date of the interval in 'YYYY-MM-DD' format.
+ * @param {string} endDate - The end date of the interval in 'YYYY-MM-DD' format.
+ *
+ * @returns {Promise<void>} A promise that resolves when the operation is complete.
+ *
+ * @throws {Error} If there is an issue with persisting the available slots.
+ */
 exports.persistDoctorAvailableSlots = async (startDate, endDate) => {
   const availableSlots = [];
   const doctorSchedules = await _getDoctorSchedulesByDayOfWeek();
@@ -45,6 +59,15 @@ exports.persistDoctorAvailableSlots = async (startDate, endDate) => {
   }
 };
 
+/**
+ * Generates a list of time slots between the specified start and end times.
+ * 
+ * @param {string} startTime - The start time in 'HH:mm:ss' format.
+ * @param {string} endTime - The end time in 'HH:mm:ss' format.
+ * @param {number} intervalMinutes - The interval in minutes between each time slot.
+ * @returns {Array<Object>} An array of objects where each object represents a time slot with 
+ *                          'startTime' and 'endTime' properties in 'HH:mm:ss' format.
+ */
 const _generateTimeSlots = (startTime, endTime, intervalMinutes) => {
   const slots = [];
   const start = parse(startTime, 'HH:mm:ss', new Date());
@@ -60,7 +83,12 @@ const _generateTimeSlots = (startTime, endTime, intervalMinutes) => {
 
   return slots;
 };
-
+  /**
+   * Retrieves all doctor schedules grouped by day of week.
+   * @returns {Object<string, DoctorScheduleModel[]>} An object with day of week as key and an array of
+   * DoctorScheduleModel as value.
+   * @private
+   */
 const _getDoctorSchedulesByDayOfWeek = async () => {
   const doctorSchedules = await DoctorScheduleModel.findAll({
     order: [
